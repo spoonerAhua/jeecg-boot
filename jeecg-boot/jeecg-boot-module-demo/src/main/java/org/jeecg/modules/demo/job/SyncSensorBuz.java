@@ -89,15 +89,9 @@ public class SyncSensorBuz{
 				"  \"from\": 0,\n" +
 				"  \"size\": 100,\n" +
 				"  \"sort\": [\n" +
-				"    {\n" +
-				"      \"deviceId.keyword\": \"asc\"\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"slaveIndex.keyword\": \"asc\"\n" +
-				"    },\n" +
-				"    {\n" +
-				"      \"dataid\": \"asc\"\n" +
-				"    }\n" +
+				"    { \"deviceId.keyword\"  : \"asc\" },\n" +
+				"    { \"slaveIndex.keyword\": \"asc\" },\n" +
+				"    { \"dataid\"            : \"asc\" }\n" +
 				"  ],\n" +
 				"  \"aggs\": {}\n" +
 				"}";
