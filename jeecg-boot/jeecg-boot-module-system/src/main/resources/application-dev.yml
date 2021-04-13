@@ -287,3 +287,8 @@ justauth:
     type: default
     prefix: 'demo::'
     timeout: 1h
+
+usrCloud:
+  userName: 18269690309
+  # 对 user111 进行md5 32位编码
+  password: 0c534ed3fff7d2bfd32ee19d84644e3f
