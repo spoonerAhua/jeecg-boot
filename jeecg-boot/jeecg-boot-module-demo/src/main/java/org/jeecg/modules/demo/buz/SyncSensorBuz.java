@@ -1,4 +1,4 @@
-package org.jeecg.modules.demo.job;
+package org.jeecg.modules.demo.buz;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -6,11 +6,7 @@ import com.alibaba.fastjson.JSONPath;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.boot.starter.lock.client.RedissonLockClient;
 import org.jeecg.common.es.JeecgElasticsearchTemplate;
-import org.jeecg.common.util.DateUtils;
 import org.jeecg.modules.demo.test.entity.CherryDevice;
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -28,6 +24,8 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import static org.jeecg.modules.demo.common.Constant.*;
+
 /**
  * 示例带参定时任务
  * 
@@ -35,20 +33,6 @@ import java.util.stream.Collectors;
 @Component
 @Slf4j
 public class SyncSensorBuz{
-	private final static String ESIndex_DefaultType  = "doc";
-	private final static String ESIndex_cherry_sensor_device = "cherry_sensor_device";
-	private final static String ESIndex_cherry_sensor_slave = "cherry_sensor_slave";
-	private final static String ESIndex_cherry_sensor_dataId = "cherry_sensor_dataId";
-	private final static String ESIndex_cherry_sensor_data = "cherry_sensor_data";
-
-	private final static String RedisSensorTokenKey = "chain.sensor.token";
-	private final static String RedisSensorLockKey = "chain.sensor.lock";
-
-	private final static String LoginUrl = "https://openapi.mp.usr.cn/usrCloud/user/login"; //登录
-	private final static String GetDevsForVnUrl = "https://openapi.mp.usr.cn/usrCloud/vn/dev/getDevsForVn"; // 获取某个用户的设备列表
-	private final static String GetDevsUrl = "https://openapi.mp.usr.cn/usrCloud/dev/getDevice"; // 获取设备详情
-	private final static String GetDataPointInfoByDeviceUrl = "https://openapi.mp.usr.cn/usrCloud/datadic/getDataPointInfoByDevice"; //根据设备获取变量信息
-	private final static String GetDeviceDataPointHistoryUrl = "https://openapi.mp.usr.cn/usrCloud/dev/getDeviceDataPointHistory"; //获取设备变量历史记录
 
 	private final static SimpleDateFormat DateFormat= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
